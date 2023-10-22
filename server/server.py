@@ -141,18 +141,18 @@ def process_post_data():
                 print(comments_in_page)
                 to_req_client.append(fr_page.post_hided_by_list_id(comments_lsit = comments_in_page, hide = False, gpt_token=data["gpt_token"]))
 
-        return jsonify({"Succsess": True, "List_of_comments": to_req_client})
+        return jsonify({"Success": True, "List_of_comments": to_req_client})
     except Exception as err:
         print("ERROR:  " + str(err))
         if str(err) == "accounts":
-            return jsonify({"Succsess": False, "error": "error of facebook token"})
+            return jsonify({"Success": False, "error": "error of facebook token"})
         if "Incorrect API key provided" in str(err):
-            return jsonify({"Succsess": False, "error": "error of gpt token"})
-        return jsonify({"Succsess": False, "error": str(err)})
+            return jsonify({"Success": False, "error": "error of gpt token"})
+        return jsonify({"Success": False, "error": str(err)})
 
 @app.route('/hello', methods=['get'])
 def hello():
     return jsonify("hello")
 
 if __name__ == '__main__':
-    app.run(port=5000, debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)

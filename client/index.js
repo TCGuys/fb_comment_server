@@ -1,3 +1,4 @@
+const fetch = require('node-fetch');
 const express = require('express');
 const app = express();
 const URL = 'http://91.247.37.218:5000';
