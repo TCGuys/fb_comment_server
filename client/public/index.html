@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>FBComment</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+  <div class="page">
+    <div class="container">
+      <div class="answer">
+      </div>
+      <div class="content">
+        <h2 class="title">Удаление негативных комментариев</h2>
+        <input type="text" id="facebook_token" oninput="replacePlaceholder('facebook_token', this.value)" placeholder="Токен страницы:">
+        <input type="text" id="gpt_token" oninput="replacePlaceholder('gpt_token', this.value)" placeholder="Токен chatGPT:">
+        <button id="delete-button" class="button allow" onclick="deleteNegativeComments()">Удалить</button>
+      </div>
+    </div>
+  </div>
+</body>
+<script src="script.js"></script>
+</html>
