@@ -34,21 +34,4 @@ app.post('/process_post_data', async (req, res) => {
     return await getAnswer();
 });
 
-app.get('/is_worked', (req, res) => {
-    let {gpt_token} = req;
-    res.json(customers[gpt_token]);
-})
-
-// app.get('/get_hello', async (req, res) => {
-//     res.json(customers.hello)
-// });
-//
-// app.get('/hello', async (req, res) => {
-//     customers.hello = true;
-//     let result = setTimeout(() => {
-//         customers.hello = false;
-//         res.json('HELLO');
-//     }, 10000)
-// });
-
 app.listen(3000);
