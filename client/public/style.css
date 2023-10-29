@@ -95,6 +95,11 @@ html,body{
 	border: 5px solid rgb(220, 20, 70);
 	opacity: 1;
 }
+.worked{
+	background: rgb(225, 184, 121);
+	border: 5px solid rgb(220, 140, 20);
+	opacity: 1;
+}
 
 .answer>p{
 	padding: 20px;

@@ -23,8 +23,8 @@ let stateButton = () => {
 
 let {allow, prohibit, isAllow} = stateButton();
 function replacePlaceholder(inputId, value) {
-  var inputElement = document.getElementById(inputId);
-  inputElement.placeholder = value;
+  // var inputElement = document.getElementById(inputId);
+  // inputElement.placeholder = value;
 }
 
 async function deleteNegativeComments() {
@@ -49,23 +49,41 @@ async function deleteNegativeComments() {
     });
     let result = await response.json();
     console.log(result)
+    if(result.Success == 'WORKED') throw new Error('WORKED');
     if(!result.Success) throw new Error(result);
     showAnswer(true)
   }catch(error){
-    showAnswer(false)
-    console.info(error)
+    if(error.message == 'WORKED') showAnswer('WORKED');
+    else showAnswer(false);
   }finally {
     allow();
   }
 }
 
 function showAnswer(ans){
+  let [addClass, innerHTML] = ['', ''];
+
+  switch (ans){
+    case 'WORKED':
+      addClass = ans.toLowerCase();
+      innerHTML = `<p>${ans}</p>`;
+      break;
+    case true:
+      addClass = 'success';
+      innerHTML = '<p>SUCCESS</p>';
+      break;
+    case false:
+      addClass = 'error';
+      innerHTML = '<p>ERROR</p>';
+      break;
+  }
+
   let field = document.querySelector('.answer');
-  field.classList.add(ans ? 'success' : 'error');
-  field.innerHTML = ans ? '<p>SUCCESS</p>' : '<p>ERROR</p>';
+  field.classList.add(addClass);
+  field.innerHTML = innerHTML;
 
 
   setTimeout(function(){
-    field.classList.remove(ans ? 'success' : 'error');
+    field.classList.remove(addClass);
   }, 3000);
 }
