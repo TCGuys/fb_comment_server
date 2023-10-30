@@ -2,7 +2,7 @@ const fetch = require('node-fetch');
 const express = require('express');
 const customers = require('./customers');
 const app = express();
-const URL = 'http://91.247.37.218:5000';
+const URL = 'http://127.0.0.1:5000';
 app.use(express.json());
 app.use(express.static('public'));
 app.get('/', function (request, response) {
@@ -19,17 +19,23 @@ app.post('/process_post_data', async (req, res) => {
 
     customers[gpt_token] = true;
     let getAnswer = async () => {
-        let response = await fetch(URL + '/process_post_data', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(req.body)
-        });
+        try{
+            let response = await fetch(URL + '/process_post_data', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(req.body)
+            });
 
-        let ans = await response.json();
-        customers[gpt_token] = false;
-        res.json(ans);
+            let ans = await response.json();
+            customers[gpt_token] = false;
+            res.json(ans);
+        }catch (e){
+            customers[gpt_token] = false;
+            res.json({Success: false, error: ans});
+        }
+
     }
     return await getAnswer();
 });
