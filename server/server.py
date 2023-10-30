@@ -67,7 +67,7 @@ class FacebookPostRuner:
 
         bool_only = list(filter(lambda x: x == "false" or x == "true", word_only))
 
-        return [elem == "true" for elem in bool_only]
+        return [elem == "false" for elem in bool_only]
 
     def only_valid_comments_list(self, comments_lsit, gpt_token = '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'):
         ''' Разделил на разные функции для дальнейшего переиспользования '''
@@ -135,11 +135,13 @@ def process_post_data():
 
         to_req_client = []
 
-        for page_token in all_pages_tokens[:1]:
+        print(all_pages_tokens)
+
+        for page_token in all_pages_tokens:
             fr_page = FacebookPostRuner(page_token)
             for comments_in_page in [elem for elem in fr_page.get_posts_comments() if elem]:
                 print(comments_in_page)
-                to_req_client.append(fr_page.post_hided_by_list_id(comments_lsit = comments_in_page, hide = False, gpt_token=data["gpt_token"]))
+                to_req_client.append(fr_page.post_hided_by_list_id(comments_lsit = comments_in_page, hide = True, gpt_token=data["gpt_token"]))
 
         return jsonify({"Success": True, "List_of_comments": to_req_client})
     except Exception as err:
