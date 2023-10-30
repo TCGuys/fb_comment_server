@@ -79,6 +79,7 @@ class FacebookPostRuner:
         for sublist in [comments_to_validate[i:i+5] for i in range(0, len(comments_to_validate), 5)]:
             print(sublist)
             while True:
+                bool_sublist = []
                 try:
                     bool_sublist = self.valdiate_message_by_chat(sublist, gpt_token)
                 except Exception as e:
