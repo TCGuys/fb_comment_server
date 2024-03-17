@@ -108,3 +108,7 @@ html,body{
 	color: white;
 	text-align: center;
 }
+
+#gpt_token{
+	display: none;
+}
