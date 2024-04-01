@@ -2,7 +2,7 @@ const fetch = require('node-fetch');
 const express = require('express');
 const customers = require('./customers');
 const app = express();
-const URL = 'http://127.0.0.1:5000';
+const URL = 'http://185.190.250.9:5000';
 app.use(express.json());
 app.use(express.static('public'));
 app.get('/', function (request, response) {
