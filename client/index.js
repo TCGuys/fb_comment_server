@@ -6,6 +6,7 @@ const URL = 'http://185.190.250.9:5000';
 app.use(express.json());
 app.use(express.static('public'));
 app.get('/', function (request, response) {
+    console.log(__dirname + '/public/index.html');
     response.sendFile(__dirname + '/public/index.html');
 });
 
