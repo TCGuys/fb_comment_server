@@ -39,5 +39,5 @@ app.post('/process_post_data', async (req, res) => {
     }
     return await getAnswer();
 });
-
-app.listen(3001, '185.190.250.9');
+const PORT= 3001;
+app.listen(PORT, () => console.log('server started on port ' + PORT));
