@@ -42,4 +42,6 @@ app.post('/process_post_data', async (req, res) => {
     return await getAnswer();
 });
 const PORT= 5173;
-app.listen(PORT, () => console.log('server started on port ' + PORT));
+const HOST = '0.0.0.0';
+app.listen(PORT, HOST, () => console.log('server started on port ' + PORT));
+
