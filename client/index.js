@@ -1,13 +1,14 @@
 const fetch = require('node-fetch');
-const express = require('express');
+const express = require('express')
+const path = require('path');
 const customers = require('./customers');
 const app = express();
 const URL = 'http://185.190.250.9:5000';
 app.use(express.json());
-app.use(express.static('public'));
+app.use('/public', express.static( './public'));
 app.get('/', function (request, response) {
-    console.log(__dirname + '/public/index.html');
-    response.sendFile(__dirname + '/public/index.html');
+    console.log(path.join(__dirname, '/index.html'));
+    response.sendFile(__dirname + '/index.html');
 });
 
 app.post('/process_post_data', async (req, res) => {
